@@ -1,0 +1,6 @@
+{
+  "name": "Ko-fi Retro-Terminal Banner Studio",
+  "description": "Generate and export dithered, ASCII, retro-terminal profile headers for Ko-fi featuring zen zakura macro, otofy, and custom avatar artwork.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

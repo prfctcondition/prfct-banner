@@ -1,0 +1,128 @@
+import { BannerConfig, PresetTheme } from '../types';
+
+export const DEFAULT_BANNER_CONFIG: BannerConfig = {
+  project1: {
+    enabled: true,
+    name: 'zen zakura macro',
+    subtext: 'botanical micro-focus // 1:1 stipple capture // optics',
+    code: 'SYS.MACRO.01',
+    category: 'OPTICAL / BOTANICAL',
+    telemetry: '[SYS.MACRO // F1.4 1:1 RESOLUTION // BOTANICAL STIPPLE // 35mm]',
+    showVisualElement: true,
+  },
+  project2: {
+    enabled: true,
+    name: 'otofy',
+    subtext: 'digital audio synthesis // dsp modular wave // 44.1kHz',
+    code: 'AUDIO.DSP.V2',
+    category: 'SOUND / DSP',
+    telemetry: '[AUDIO.DSP // MODULAR SYNTHESIS // 20Hz - 22kHz // FREQ_OUT]',
+    showVisualElement: true,
+  },
+  systemPrompt: 'usr@creative-terminal:~$ init --profile ko-fi',
+  sessionCode: 'SESSION::ZZM-8086 // BLK-001',
+  authorHandle: '@creative_artist',
+  statusTag: 'STATUS: ACTIVE // BUFFER: OK',
+
+  ditherAlgo: 'bayer8',
+  ditherScale: 1,
+  contrast: 1.35,
+  brightness: 5,
+  invert: false,
+  colorTint: 'monochrome',
+
+  showScanlines: true,
+  scanlineIntensity: 0.35,
+  showAsciiGrid: true,
+  showAudioWave: true,
+  showMacroFrame: true,
+  showTerminalBorder: true,
+  showSafeZoneGuide: false,
+
+  flowerPosition: 'right',
+  flowerScale: 1.15,
+  flowerOffsetX: 0,
+  flowerOffsetY: 0,
+
+  customImageSrc: null,
+
+  aspectRatio: '3:1',
+  width: 1200,
+  height: 400,
+};
+
+export const PRESET_THEMES: PresetTheme[] = [
+  {
+    id: 'zen-matrix',
+    name: 'Zen Monochrome CRT',
+    description: 'High-contrast 8x8 Bayer dither, pure #000000 void, thin terminal telemetry.',
+    config: {
+      ditherAlgo: 'bayer8',
+      ditherScale: 1,
+      contrast: 1.4,
+      brightness: 10,
+      invert: false,
+      showScanlines: true,
+      showAsciiGrid: true,
+      showAudioWave: true,
+      showMacroFrame: true,
+      colorTint: 'monochrome',
+    },
+  },
+  {
+    id: 'ascii-terminal',
+    name: 'Pure ASCII Terminal',
+    description: 'Dense character-based stippling with brackets and technical coordinates.',
+    config: {
+      ditherAlgo: 'ascii',
+      ditherScale: 2,
+      contrast: 1.5,
+      brightness: 0,
+      invert: false,
+      showScanlines: true,
+      showAsciiGrid: true,
+      showTerminalBorder: true,
+    },
+  },
+  {
+    id: 'floyd-stipple',
+    name: 'Floyd-Steinberg Fine Grain',
+    description: 'Organic error-diffusion stippling with delicate mid-tones and crisp contours.',
+    config: {
+      ditherAlgo: 'floyd-steinberg',
+      ditherScale: 1,
+      contrast: 1.25,
+      brightness: 5,
+      invert: false,
+      showScanlines: false,
+      showAudioWave: true,
+    },
+  },
+  {
+    id: 'atkinson-mac',
+    name: 'Atkinson 1-Bit 1984',
+    description: 'Crisp classic Macintosh HyperCard bitmap dithering with punchy contrast.',
+    config: {
+      ditherAlgo: 'atkinson',
+      ditherScale: 1,
+      contrast: 1.6,
+      brightness: -5,
+      invert: false,
+      showScanlines: false,
+    },
+  },
+  {
+    id: 'paper-white',
+    name: 'Inverted Ink on Paper',
+    description: 'Deep black ink on pristine white canvas, minimalist Japanese print aesthetic.',
+    config: {
+      ditherAlgo: 'bayer8',
+      ditherScale: 1,
+      contrast: 1.3,
+      brightness: 0,
+      invert: true,
+      showScanlines: false,
+      showAsciiGrid: false,
+    },
+  },
+];
