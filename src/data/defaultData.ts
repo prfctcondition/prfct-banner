@@ -3,6 +3,7 @@ import { BannerConfig, PresetTheme } from '../types';
 export const DEFAULT_BANNER_CONFIG: BannerConfig = {
   project1: {
     enabled: true,
+    prefix: '// 01. PROJECT_INITIALIZED',
     name: 'zen zakura macro',
     subtext: 'botanical micro-focus // 1:1 stipple capture // optics',
     code: 'SYS.MACRO.01',
@@ -12,17 +13,28 @@ export const DEFAULT_BANNER_CONFIG: BannerConfig = {
   },
   project2: {
     enabled: true,
+    prefix: '// 02. MODULAR_NODE',
     name: 'otofy',
     subtext: 'digital audio synthesis // dsp modular wave // 44.1kHz',
     code: 'AUDIO.DSP.V2',
     category: 'SOUND / DSP',
     telemetry: '[AUDIO.DSP // MODULAR SYNTHESIS // 20Hz - 22kHz // FREQ_OUT]',
     showVisualElement: true,
+    visualLabel: '44.1kHz / 24-BIT WAV',
   },
-  systemPrompt: 'usr@creative-terminal:~$ init --profile ko-fi',
+  systemPrompt: 'usr@creative-terminal:~$ init --banner-studio',
   sessionCode: 'SESSION::ZZM-8086 // BLK-001',
+  topRightText: 'SESSION::ZZM-8086 // RES: 1200×400',
   authorHandle: '@creative_artist',
   statusTag: 'STATUS: ACTIVE // BUFFER: OK',
+  bottomLeftText: '[ONLINE] STATUS: ACTIVE // BUFFER: OK · MEM: 0x8F40',
+  bottomRightText: 'ASCII_MATRIX // RETRO_TERMINAL_V1',
+
+  voidTitle: 'BOTANICAL // DIGITAL VOID',
+  voidSubtitle: '[STANDALONE MONOCHROME AESTHETIC]',
+  voidPrompt: 'sys@creative-core:~$ systemctl status visual-nodes',
+  voidSubtext: '>> Toggle project slots on from the controls below to display custom title & telemetry.',
+  safeZoneLabel: 'AVATAR SAFE ZONE (AVOID ESSENTIAL TEXT HERE)',
 
   ditherAlgo: 'bayer8',
   ditherScale: 1,

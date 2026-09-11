@@ -18,12 +18,14 @@ export interface ProjectData {
 
 export interface ProjectItemConfig {
   enabled: boolean;
+  prefix?: string;
   name: string;
   subtext: string;
   code: string;
   category: string;
   telemetry: string;
   showVisualElement?: boolean;
+  visualLabel?: string;
 }
 
 export interface BannerConfig {
@@ -31,11 +33,21 @@ export interface BannerConfig {
   project1: ProjectItemConfig;
   project2: ProjectItemConfig;
 
-  // Terminal & Header System
+  // Terminal & Header System (Fully Editable)
   systemPrompt: string;
   sessionCode: string;
+  topRightText: string;
   authorHandle: string;
   statusTag: string;
+  bottomLeftText: string;
+  bottomRightText: string;
+
+  // Standalone / Void Text (when projects disabled)
+  voidTitle: string;
+  voidSubtitle: string;
+  voidPrompt: string;
+  voidSubtext: string;
+  safeZoneLabel: string;
 
   // Visual Styling
   ditherAlgo: DitherAlgorithm;

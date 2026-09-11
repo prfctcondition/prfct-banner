@@ -244,6 +244,22 @@ export const BannerControls: React.FC<BannerControlsProps> = ({
                 />
               </div>
 
+              <div>
+                <label className="block text-neutral-400 text-[10px] uppercase mb-1">Prefix Tag / Header</label>
+                <input
+                  type="text"
+                  value={config.project1.prefix ?? ''}
+                  disabled={config.project1.enabled === false}
+                  onChange={(e) =>
+                    onChange({
+                      project1: { ...config.project1, prefix: e.target.value },
+                    })
+                  }
+                  className="w-full bg-neutral-950 border border-neutral-800 disabled:bg-neutral-900/50 rounded px-2.5 py-1 text-neutral-300 font-mono text-[11px]"
+                  placeholder="// 01. PROJECT_INITIALIZED"
+                />
+              </div>
+
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-neutral-400 text-[10px] uppercase mb-1">Category Badge</label>
@@ -383,6 +399,22 @@ export const BannerControls: React.FC<BannerControlsProps> = ({
                 />
               </div>
 
+              <div>
+                <label className="block text-neutral-400 text-[10px] uppercase mb-1">Prefix Tag / Header</label>
+                <input
+                  type="text"
+                  value={config.project2.prefix ?? ''}
+                  disabled={config.project2.enabled === false}
+                  onChange={(e) =>
+                    onChange({
+                      project2: { ...config.project2, prefix: e.target.value },
+                    })
+                  }
+                  className="w-full bg-neutral-950 border border-neutral-800 disabled:bg-neutral-900/50 rounded px-2.5 py-1 text-neutral-300 font-mono text-[11px]"
+                  placeholder="// 02. MODULAR_NODE"
+                />
+              </div>
+
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-neutral-400 text-[10px] uppercase mb-1">Category Badge</label>
@@ -414,6 +446,22 @@ export const BannerControls: React.FC<BannerControlsProps> = ({
                     placeholder="AUDIO.DSP.V2"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-neutral-400 text-[10px] uppercase mb-1">Waveform Tag / Visual Label</label>
+                <input
+                  type="text"
+                  value={config.project2.visualLabel ?? ''}
+                  disabled={config.project2.enabled === false}
+                  onChange={(e) =>
+                    onChange({
+                      project2: { ...config.project2, visualLabel: e.target.value },
+                    })
+                  }
+                  className="w-full bg-neutral-950 border border-neutral-800 disabled:bg-neutral-900/50 rounded px-2.5 py-1 text-neutral-300 font-mono text-[11px]"
+                  placeholder="44.1kHz / 24-BIT WAV"
+                />
               </div>
 
               <div>
@@ -470,20 +518,175 @@ export const BannerControls: React.FC<BannerControlsProps> = ({
             </div>
           </div>
         </div>
+      </div>
 
-        {/* System Prompt Customizer */}
-        <div className="mt-3 pt-3 border-t border-neutral-800/80">
-          <label className="block text-neutral-400 text-[10px] uppercase mb-1">Terminal Prompt Header</label>
-          <input
-            type="text"
-            value={config.systemPrompt}
-            onChange={(e) => onChange({ systemPrompt: e.target.value })}
-            className="w-full bg-neutral-950 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-300 font-mono text-[11px]"
-          />
+      {/* 4. Terminal Header, Footer & System Typography */}
+      <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2 text-neutral-200 font-semibold uppercase tracking-wider">
+            <Type className="w-4 h-4 text-emerald-400" />
+            <span>Header, Footer & System Texts</span>
+          </div>
+          <span className="text-[10px] text-neutral-500">
+            Edit any corner, prompt, status badge, or handle
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          {/* System Prompt (Top Left) */}
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Top Left: Terminal Command Prompt
+            </label>
+            <input
+              type="text"
+              value={config.systemPrompt}
+              onChange={(e) => onChange({ systemPrompt: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="USER@RETRO-TERMINAL:~$ init --profile-header"
+            />
+          </div>
+
+          {/* Top Right Header Text */}
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Top Right: System Telemetry Header
+            </label>
+            <input
+              type="text"
+              value={config.topRightText ?? ''}
+              onChange={(e) => onChange({ topRightText: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="[SYS.PROFILE // MONOCHROME MATRIX // 1200x400]"
+            />
+          </div>
+
+          {/* Bottom Left Status Text */}
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Bottom Left: Status & Engine Telemetry
+            </label>
+            <input
+              type="text"
+              value={config.bottomLeftText ?? ''}
+              onChange={(e) => onChange({ bottomLeftText: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="ASCII RASTER // 1-BIT DITHER // 2026"
+            />
+          </div>
+
+          {/* Bottom Right System Text */}
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Bottom Right: Signature & System State
+            </label>
+            <input
+              type="text"
+              value={config.bottomRightText ?? ''}
+              onChange={(e) => onChange({ bottomRightText: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="TERMINAL ENGINE // READY"
+            />
+          </div>
+
+          {/* Author Handle */}
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Author Handle / Signature
+            </label>
+            <input
+              type="text"
+              value={config.authorHandle}
+              onChange={(e) => onChange({ authorHandle: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="@zenzakura"
+            />
+          </div>
+
+          {/* Safe Zone Guide Label */}
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Avatar Safe Zone Guide Label
+            </label>
+            <input
+              type="text"
+              value={config.safeZoneLabel ?? ''}
+              onChange={(e) => onChange({ safeZoneLabel: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="AVATAR SAFE ZONE (DO NOT PLACE ESSENTIAL TEXT HERE)"
+            />
+          </div>
         </div>
       </div>
 
-      {/* 4. Flower Artwork & Image Source */}
+      {/* 5. Minimalist Void Texts (Active when both slots are disabled) */}
+      <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2 text-neutral-200 font-semibold uppercase tracking-wider">
+            <Radio className="w-4 h-4 text-neutral-400" />
+            <span>Standalone / Void Mode Texts</span>
+          </div>
+          <span className="text-[10px] text-neutral-500">
+            Rendered when both project slots are disabled
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Void Command Prompt
+            </label>
+            <input
+              type="text"
+              value={config.voidPrompt ?? ''}
+              onChange={(e) => onChange({ voidPrompt: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="sys@creative-core:~$ systemctl status visual-nodes"
+            />
+          </div>
+
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Main Void Title
+            </label>
+            <input
+              type="text"
+              value={config.voidTitle ?? ''}
+              onChange={(e) => onChange({ voidTitle: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="BOTANICAL // DIGITAL VOID"
+            />
+          </div>
+
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Void Subtitle Tag
+            </label>
+            <input
+              type="text"
+              value={config.voidSubtitle ?? ''}
+              onChange={(e) => onChange({ voidSubtitle: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="[STANDALONE MONOCHROME AESTHETIC // DITHER: BAYER8]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-neutral-400 text-[10px] uppercase mb-1">
+              Void Description / Footnote
+            </label>
+            <input
+              type="text"
+              value={config.voidSubtext ?? ''}
+              onChange={(e) => onChange({ voidSubtext: e.target.value })}
+              className="w-full bg-neutral-900/80 border border-neutral-800 rounded px-2.5 py-1.5 text-neutral-200 font-mono text-[11px]"
+              placeholder="pure monochrome aesthetic // 1-bit raster"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 6. Flower Artwork & Image Source */}
       <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2 text-neutral-200 font-semibold uppercase tracking-wider">
@@ -561,7 +764,7 @@ export const BannerControls: React.FC<BannerControlsProps> = ({
         </div>
       </div>
 
-      {/* 5. Terminal Overlays & Ko-fi Safe Zone */}
+      {/* 7. Terminal Overlays & Avatar Safe Zone */}
       <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800">
         <div className="flex items-center gap-2 mb-3 text-neutral-200 font-semibold uppercase tracking-wider">
           <Tv className="w-4 h-4 text-neutral-400" />

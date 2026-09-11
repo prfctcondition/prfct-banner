@@ -3,7 +3,7 @@ import { BannerConfig } from './types';
 import { DEFAULT_BANNER_CONFIG, PRESET_THEMES } from './data/defaultData';
 import { BannerCanvas, BannerCanvasHandle } from './components/BannerCanvas';
 import { BannerControls } from './components/BannerControls';
-import { KofiPreviewModal } from './components/KofiPreviewModal';
+import { ProfilePreviewModal } from './components/ProfilePreviewModal';
 import { AsciiModal } from './components/AsciiModal';
 import { Header } from './components/Header';
 import { 
@@ -26,7 +26,7 @@ export default function App() {
   const [customImageElement, setCustomImageElement] = useState<HTMLImageElement | null>(null);
   const [customImageUrl, setCustomImageUrl] = useState<string | null>(null);
   const [rawAscii, setRawAscii] = useState<string>('');
-  const [isKofiModalOpen, setIsKofiModalOpen] = useState(false);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
   const [isAsciiModalOpen, setIsAsciiModalOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [activeTab, setActiveTab] = useState<'presets' | 'typography' | 'dither' | 'overlays'>('presets');
@@ -89,7 +89,7 @@ export default function App() {
       {/* Top Header */}
       <Header
         config={config}
-        onOpenPreview={() => setIsKofiModalOpen(true)}
+        onOpenPreview={() => setIsPreviewModalOpen(true)}
         onOpenAscii={() => setIsAsciiModalOpen(true)}
         onDownload={handleDownload}
       />
@@ -109,7 +109,7 @@ export default function App() {
             </span>
           </div>
           <div className="flex items-center gap-4 text-neutral-500">
-            <span>FORMAT: 1200×400 (3:1 KO-FI)</span>
+            <span>FORMAT: 1200×400 (3:1 BANNER)</span>
             <span className="hidden sm:inline">ALGO: {config.ditherAlgo.toUpperCase()}</span>
             <span className="hidden md:inline">POLARITY: {config.invert ? 'BLACK/WHITE' : 'WHITE/BLACK'}</span>
           </div>
@@ -136,7 +136,7 @@ export default function App() {
                     ? 'bg-red-950/60 border-red-800 text-red-300'
                     : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-200'
                 }`}
-                title="Toggle Ko-fi circular avatar safe zone guide"
+                title="Toggle circular avatar safe zone guide"
               >
                 <ShieldAlert className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Avatar Safe Zone</span>
@@ -201,11 +201,11 @@ export default function App() {
 
             <div className="flex items-center gap-2">
               <button
-                onClick={() => setIsKofiModalOpen(true)}
+                onClick={() => setIsPreviewModalOpen(true)}
                 className="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 transition-colors"
               >
                 <Eye className="w-3.5 h-3.5" />
-                <span>Simulate on Ko-fi Page</span>
+                <span>Simulate in Profile</span>
               </button>
             </div>
           </div>
@@ -223,10 +223,10 @@ export default function App() {
         </section>
       </main>
 
-      {/* Realistic Ko-fi Profile Simulator Modal */}
-      <KofiPreviewModal
-        isOpen={isKofiModalOpen}
-        onClose={() => setIsKofiModalOpen(false)}
+      {/* Realistic Profile Simulator Modal */}
+      <ProfilePreviewModal
+        isOpen={isPreviewModalOpen}
+        onClose={() => setIsPreviewModalOpen(false)}
         config={config}
         bannerCanvas={canvasRef.current ? canvasRef.current.getCanvas() : null}
         avatarUrl={customImageUrl}
@@ -242,8 +242,10 @@ export default function App() {
       {/* Footer */}
       <footer className="border-t border-neutral-900 bg-neutral-950 py-4 px-6 text-center text-xs font-mono text-neutral-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>// KO-FI PROFILE HEADER GENERATOR · DITHERED · ASCII · RETRO-TERMINAL</span>
-          <span>projects: zen zakura macro · otofy</span>
+          <span>// RETRO-TERMINAL BANNER STUDIO · DITHERED · ASCII MATRIX</span>
+          <span>
+            active: {[config.project1.enabled !== false ? config.project1.name : null, config.project2.enabled !== false ? config.project2.name : null].filter(Boolean).join(' · ') || 'botanical void'}
+          </span>
         </div>
       </footer>
     </div>

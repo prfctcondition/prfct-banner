@@ -26,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <span className="font-mono text-sm font-semibold tracking-wider text-white">
-                KO-FI HEADER STUDIO
+                RETRO BANNER STUDIO
               </span>
               <span className="px-1.5 py-0.5 rounded bg-neutral-800 text-[10px] font-mono text-neutral-400 border border-neutral-700">
                 1200×400
@@ -52,13 +52,13 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Action Controls */}
         <div className="flex flex-wrap items-center gap-2">
-          {/* Live Ko-fi Simulator Button */}
+          {/* Live Profile Simulator Button */}
           <button
             onClick={onOpenPreview}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 border border-neutral-700/80 hover:border-neutral-600 text-neutral-200 rounded-lg text-xs font-mono transition-colors shadow-sm"
           >
             <Eye className="w-3.5 h-3.5 text-neutral-400" />
-            <span>Ko-fi Mockup</span>
+            <span>Profile Mockup</span>
           </button>
 
           {/* ASCII Export */}
@@ -72,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Download Standard 1200x400 */}
           <button
-            onClick={() => onDownload(1, 'kofi-banner-1200x400.png')}
+            onClick={() => onDownload(1, 'banner-1200x400.png')}
             className="flex items-center gap-1.5 px-3.5 py-1.5 bg-neutral-100 hover:bg-white text-black font-semibold rounded-lg text-xs font-mono transition-all shadow active:scale-95"
           >
             <Download className="w-3.5 h-3.5" />
@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Download 2x Retina */}
           <button
-            onClick={() => onDownload(2, 'kofi-banner-2400x800-retina.png')}
+            onClick={() => onDownload(2, 'banner-2400x800-retina.png')}
             className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 rounded-lg text-xs font-mono border border-neutral-700 transition-colors"
           >
             <span>2X Retina</span>

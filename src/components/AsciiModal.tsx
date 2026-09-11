@@ -53,7 +53,7 @@ export const AsciiModal: React.FC<AsciiModalProps> = ({ isOpen, onClose, asciiCo
         </div>
 
         <div className="px-5 py-2.5 border-t border-neutral-900 bg-neutral-950 flex justify-between items-center text-[11px] font-mono text-neutral-500">
-          <span>// Use for GitHub profile, terminal motd, or Ko-fi bio description</span>
+          <span>// Use for GitHub profile, terminal motd, or profile bio description</span>
           <span>Characters: {asciiContent.length}</span>
         </div>
       </div>

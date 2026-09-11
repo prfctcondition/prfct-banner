@@ -28,7 +28,7 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
         const imgData = ctx.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
         return generateAsciiArt(imgData, cols);
       },
-      downloadImage: (multiplier = 1, filename = 'kofi-header-banner.png') => {
+      downloadImage: (multiplier = 1, filename = 'retro-banner.png') => {
         if (!canvasRef.current) return;
         const srcCanvas = canvasRef.current;
         const exportCanvas = document.createElement('canvas');
@@ -161,7 +161,7 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
       ctx.fillStyle = dimColor;
       ctx.fillText(config.systemPrompt, 36, 38);
 
-      const sessionText = `${config.sessionCode}  [KO-FI: 1200x400]`;
+      const sessionText = config.topRightText || `${config.sessionCode}  [1200x400]`;
       const sessionMetrics = ctx.measureText(sessionText);
       ctx.fillText(sessionText, width - sessionMetrics.width - 36, 38);
 
@@ -185,7 +185,8 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
         // Project 1
         ctx.font = '200 10px "JetBrains Mono", "Share Tech Mono", monospace';
         ctx.fillStyle = dimColor;
-        ctx.fillText(`// 01. PROJECT_INITIALIZED [${config.project1.category}]`, startX, curY);
+        const p1Prefix = config.project1.prefix || '// 01. PROJECT_INITIALIZED';
+        ctx.fillText(`${p1Prefix} [${config.project1.category}]`, startX, curY);
 
         curY += 34;
         ctx.font = '200 36px "JetBrains Mono", monospace';
@@ -238,7 +239,8 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
         // Project 2
         ctx.font = '200 10px "JetBrains Mono", "Share Tech Mono", monospace';
         ctx.fillStyle = dimColor;
-        ctx.fillText(`// 02. MODULAR_NODE [${config.project2.category}]`, startX, curY);
+        const p2Prefix = config.project2.prefix || '// 02. MODULAR_NODE';
+        ctx.fillText(`${p2Prefix} [${config.project2.category}]`, startX, curY);
 
         curY += 34;
         ctx.font = '200 36px "JetBrains Mono", monospace';
@@ -262,7 +264,7 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
 
           ctx.font = '200 9px "Share Tech Mono", monospace';
           ctx.fillStyle = dimColor;
-          ctx.fillText('44.1kHz / 24-BIT WAV', waveX + waveBars * 5 + 8, curY - 6);
+          ctx.fillText(config.project2.visualLabel || '44.1kHz / 24-BIT WAV', waveX + waveBars * 5 + 8, curY - 6);
           ctx.restore();
         }
 
@@ -280,7 +282,8 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
         let curY = 150;
         ctx.font = '200 11px "JetBrains Mono", "Share Tech Mono", monospace';
         ctx.fillStyle = dimColor;
-        ctx.fillText(`// 01. PRIMARY_FOCUS [${config.project1.category}] // CODE: ${config.project1.code}`, startX, curY);
+        const p1Prefix = config.project1.prefix || '// 01. PRIMARY_FOCUS';
+        ctx.fillText(`${p1Prefix} [${config.project1.category}] // CODE: ${config.project1.code}`, startX, curY);
 
         curY += 42;
         ctx.font = '200 44px "JetBrains Mono", monospace';
@@ -326,7 +329,8 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
         let curY = 150;
         ctx.font = '200 11px "JetBrains Mono", "Share Tech Mono", monospace';
         ctx.fillStyle = dimColor;
-        ctx.fillText(`// 01. PRIMARY_DSP_NODE [${config.project2.category}] // CODE: ${config.project2.code}`, startX, curY);
+        const p2Prefix = config.project2.prefix || '// 01. PRIMARY_DSP_NODE';
+        ctx.fillText(`${p2Prefix} [${config.project2.category}] // CODE: ${config.project2.code}`, startX, curY);
 
         curY += 42;
         ctx.font = '200 44px "JetBrains Mono", monospace';
@@ -350,7 +354,7 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
 
           ctx.font = '200 10px "Share Tech Mono", monospace';
           ctx.fillStyle = dimColor;
-          ctx.fillText('44.1kHz / 24-BIT HI-RES AUDIO', waveX + waveBars * 5.5 + 10, curY - 10);
+          ctx.fillText(config.project2.visualLabel || '44.1kHz / 24-BIT HI-RES AUDIO', waveX + waveBars * 5.5 + 10, curY - 10);
           ctx.restore();
         }
 
@@ -369,21 +373,21 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
         let curY = 160;
         ctx.font = '200 12px "JetBrains Mono", monospace';
         ctx.fillStyle = dimColor;
-        ctx.fillText('sys@creative-core:~$ systemctl status visual-nodes', startX, curY);
+        ctx.fillText(config.voidPrompt || 'sys@creative-core:~$ systemctl status visual-nodes', startX, curY);
 
         curY += 30;
         ctx.font = '200 28px "JetBrains Mono", monospace';
         ctx.fillStyle = fgColor;
-        ctx.fillText('BOTANICAL // DIGITAL VOID', startX, curY);
+        ctx.fillText(config.voidTitle || 'BOTANICAL // DIGITAL VOID', startX, curY);
 
         curY += 22;
         ctx.font = '200 11px "JetBrains Mono", monospace';
         ctx.fillStyle = dimColor;
-        ctx.fillText(`[STANDALONE MONOCHROME AESTHETIC // DITHER: ${config.ditherAlgo.toUpperCase()}]`, startX, curY);
+        ctx.fillText(config.voidSubtitle || `[STANDALONE MONOCHROME AESTHETIC // DITHER: ${config.ditherAlgo.toUpperCase()}]`, startX, curY);
 
         curY += 16;
         ctx.fillStyle = veryDimColor;
-        ctx.fillText('>> Toggle project slots on from the controls below to display custom title & telemetry.', startX, curY);
+        ctx.fillText(config.voidSubtext || '>> Toggle project slots on from the controls below to display custom title & telemetry.', startX, curY);
       }
 
       // Bottom Status Telemetry Bar
@@ -396,10 +400,10 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
 
       ctx.font = '200 10px "JetBrains Mono", "Share Tech Mono", monospace';
       ctx.fillStyle = dimColor;
-      const statusLeft = `[ONLINE] ${config.statusTag} · MEM: 0x8F40 · DITHER: ${config.ditherAlgo.toUpperCase()}`;
+      const statusLeft = config.bottomLeftText || `[ONLINE] ${config.statusTag} · MEM: 0x8F40 · DITHER: ${config.ditherAlgo.toUpperCase()}`;
       ctx.fillText(statusLeft, 36, bottomY);
 
-      const statusRight = `CREATIVE STUDIO // RETRO-TERMINAL MONOCHROME`;
+      const statusRight = config.bottomRightText || `${config.authorHandle} // RETRO-TERMINAL MONOCHROME`;
       const rightMetrics = ctx.measureText(statusRight);
       ctx.fillText(statusRight, width - rightMetrics.width - 36, bottomY);
 
@@ -419,14 +423,14 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
         ctx.fillText('+', width - inset - 3, height - inset + 4);
       }
 
-      // 6. Ko-fi Profile Avatar Safe Zone Guide Overlay
+      // 6. Profile Avatar Safe Zone Guide Overlay
       if (config.showSafeZoneGuide) {
         ctx.save();
         ctx.setLineDash([4, 4]);
         ctx.strokeStyle = 'rgba(255, 100, 100, 0.75)';
         ctx.lineWidth = 1.5;
 
-        // Standard Ko-fi profile avatar placement is bottom-left, overlapping banner
+        // Avatar safe zone guide placement
         const avatarCenterX = 96;
         const avatarCenterY = height;
         const avatarRadius = 60;
@@ -440,7 +444,7 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
 
         ctx.font = '10px "JetBrains Mono", monospace';
         ctx.fillStyle = 'rgba(255, 100, 100, 0.9)';
-        ctx.fillText('KO-FI AVATAR SAFE ZONE (DO NOT PLACE ESSENTIAL TEXT HERE)', 24, height - 74);
+        ctx.fillText(config.safeZoneLabel || 'AVATAR SAFE ZONE (DO NOT PLACE ESSENTIAL TEXT HERE)', 24, height - 74);
         ctx.restore();
       }
 
@@ -466,7 +470,7 @@ export const BannerCanvas = forwardRef<BannerCanvasHandle, BannerCanvasProps>(
       <div className="relative w-full flex justify-center items-center overflow-hidden">
         <canvas
           ref={canvasRef}
-          id="kofi-banner-canvas"
+          id="retro-banner-canvas"
           className="w-full h-auto max-w-full rounded-sm border border-neutral-800 shadow-2xl transition-all"
           style={{ imageRendering: 'pixelated' }}
         />
